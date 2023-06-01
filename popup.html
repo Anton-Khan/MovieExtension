@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8">	
+   <title>Kinovod Quick Launcher</title>
+   <link rel="stylesheet" href="loading.css">
+   <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+    crossorigin="anonymous">
+</head>
+<body>
+    <div class="modal-header">
+        <h1 class="logo">
+          <img class="logo-icon" src="Images/icon.png"> Kinovod
+          <span class="version">(1.1.0)</span>
+       </h1>
+    </div>
+    <div class="modal-content">
+        <p>Быстрый доступ к Kinovod</p>
+    </div>
+    <div class="modal-icons">
+        <div class="flex-container">
+          <div class="flex">
+            <a onclick="link()" id="link" target="_blank" style="cursor: pointer;">
+              <img id="button" class="logo-icon" src="Images/icon.png">
+              <script src="popup.js"></script>
+            </a>
+          </div>
+        <p id="loaderText" style="opacity: 0.0;">Ищу доступный домен)</p>
+        <div class="loader" id="loader">
+          <div class="inner one"></div>
+          <div class="inner two"></div>
+          <div class="inner three"></div>
+      </div>
+    </div>
+    </div>    
+</body>
+</html>
