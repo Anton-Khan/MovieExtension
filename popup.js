@@ -2,17 +2,14 @@ document.getElementById("link").onclick = async function() {
     Loading();
 
     let date = new Date();
-    date.setDate(date.getDate())
+    var url = getLinkfromDate(date);
+        
+    url = await checkURL(url, date);
     
-    let link = "https://www.kinovod" + parseDate(date) + ".cc";
-
-    link = await checkConnection(link, date);
-    console.log(link)
-    
-    window.open(link, '_blank').focus();
+    window.open(url, '_blank').focus();
 }
 
-function parseDate(date){
+function getLinkfromDate(date){
     let day = date.getDate();
     let month = date.getMonth()+1;
     let year = date.getFullYear().toString().slice(2,4);
@@ -22,35 +19,55 @@ function parseDate(date){
     if (month < 10) {
         month = `0${month}`;
     }
-    return day + month + year;
+    return "https://www.kinovod" + day + month + year + ".cc";
 }
 
-async function checkConnection(url, date){
+async function checkURL(url, date){
     if(! await isSiteOnline(url))
     {
-        for (let i = -5; i < 6; i++) {
-            let tempDate = new Date(date)
-            tempDate.setDate(date.getDate() + i);
-            url = "https://www.kinovod" + parseDate(tempDate) + ".cc";  
-            if(await isSiteOnline(url)){
-                console.log(url + "   " + "yes")
+        for (let i = 1; i < 7; i++) {
+            let newDate = new Date(date);
+            
+            let result = await checkNewURL(url, i, newDate, date );
+            if( result.passed ){
+                url = result.url;
                 break;
             }
-            else{
-                console.log(url + "   " + "no")
+
+            result = await checkNewURL(url, -i, newDate, date );
+            if( result.passed  ){
+                url = result.url;
+                break;
             }
+
+            if(i == 6)
+                alert("NIHUYA NE NASHEL")
         }
     }
     return url
+}
+
+async function checkNewURL(url, index, newDate, currentDate){
+    return new Promise( async (resolve, reject) => {
+        newDate.setDate(currentDate.getDate() + index);
+        url = getLinkfromDate(newDate);  
+        if(await isSiteOnline(url)){
+            console.debug(url + "   " + "PASS")
+            resolve({passed : true, url : url});
+        }
+        else{
+            console.debug(url + "   " + "NO CONNECTION")
+            resolve({passed : false, url : url});
+        }
+    });
 }
 
 async function isSiteOnline(url) {
     return new Promise( (resolve, reject) => {
         // try to load favicon
         var timer = setTimeout(function(){
-            // timeout after 5 seconds
             resolve(false);
-        },5000)
+        },2000)
     
         var img = document.createElement("img");
         img.onload = function() {
