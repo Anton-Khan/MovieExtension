@@ -4,32 +4,21 @@
    <meta charset="utf-8">	
    <title>Kinovod Quick Launcher</title>
    <link rel="stylesheet" href="loading.css">
+   <script src="popup.js"></script>
 </head>
-<body>
+<body onload="link()">
     <div class="modal-header">
         <h1 class="logo">
           <img class="logo-icon" src="Images/icon.png"> Kinovod
-          <span class="version">(1.1.0)</span>
+          <span class="version">(1.1.1)</span>
        </h1>
-    </div>
-    <div class="modal-content">
-        <p>Быстрый доступ к Kinovod</p>
-    </div>
-    <div class="modal-icons">
-        <div class="flex-container">
-          <div class="flex">
-            <a onclick="link()" id="link" target="_blank" style="cursor: pointer;">
-              <img id="button" class="logo-icon" src="Images/icon.png">
-              <script src="popup.js"></script>
-            </a>
-          </div>
-        <p id="loaderText" style="opacity: 0.0;">Ищу доступный домен)</p>
-        <div class="loader" id="loader">
-          <div class="inner one"></div>
-          <div class="inner two"></div>
-          <div class="inner three"></div>
+    </div>   
+      <p> Ищу доступный <span class="coloredText"> домен) </span> </p>
+      <div class="loader" id="loader">
+        <div class="inner one"></div>
+        <div class="inner two"></div>
+        <div class="inner three"></div>
       </div>
-    </div>
     </div>    
 </body>
 </html>

@@ -1,12 +1,17 @@
-document.getElementById("link").onclick = async function() {
-    Loading();
+document.addEventListener("DOMContentLoaded", function(){
+    setTimeout(() => {
+    link();
+  }, "1"); 
+}, false);
 
+async function link() {
     let date = new Date();
     var url = getLinkfromDate(date);
         
     url = await checkURL(url, date);
     
     window.open(url, '_blank').focus();
+    window.close();
 }
 
 function getLinkfromDate(date){
@@ -41,7 +46,7 @@ async function checkURL(url, date){
             }
 
             if(i == 6)
-                alert("NIHUYA NE NASHEL")
+                alert("Kinovod(дата).cc временно недоступен. Используйте VPN и следующую ссылку: kinovod.net")
         }
     }
     return url
@@ -82,11 +87,4 @@ async function isSiteOnline(url) {
     
         img.src = url+"/favicon.ico";
     });
-}
-
-function Loading(){
-    let loader = document.getElementById("loader")
-    let loaderText = document.getElementById("loaderText")
-    loader.style.opacity = "1.0"
-    loaderText.style.opacity = "1.0"
 }
