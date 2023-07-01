@@ -17,10 +17,14 @@ This extension can help you with the opening of the site "Kinovod(date).cc"
 ### For chrome 
 Open chrome browser. Open [chrome extensions page](chrome://extensions/).
 ![alt text](https://github.com/Anton-Khan/MovieExtensionImages/blob/main/Extension1.png)
+
+
 1) Turn on developer mode.
 2) Сlick on the button "Load unpacked".
 
 ![alt text](https://github.com/Anton-Khan/MovieExtensionImages/blob/main/Extension2.png)
+
+
 
 3) Select previously downloaded folder in file browser: "MovieExtension-main".
 
