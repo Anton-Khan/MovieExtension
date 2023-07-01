@@ -16,6 +16,7 @@ This extension can help you with the opening of the site "Kinovod(date).cc"
 
 ### For chrome 
 Open chrome browser. Open [chrome extensions page](chrome://extensions/).
+
 ![alt text](https://github.com/Anton-Khan/MovieExtensionImages/blob/main/Extension1.png)
 
 
