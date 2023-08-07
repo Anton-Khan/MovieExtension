@@ -4,17 +4,40 @@ document.addEventListener("DOMContentLoaded", function(){
   }, "1"); 
 }, false);
 
+var date;
+var siteInfo;
+
 async function link() {
-    let date = new Date();
-    var url = getLinkfromDate(date);
-        
-    url = await checkURL(url, date);
-    
+    date = new Date();
+    siteInfo = await getSiteInfo();
+
+    let stringOfDate = getStringOfDate(date);
+    var url = getURLFromStringOfDate(stringOfDate);
+
+    url = await checkURL(url);
+    await timeout(500);
+
     window.open(url, '_blank').focus();
     window.close();
 }
 
-function getLinkfromDate(date){
+function timeout(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function getSiteInfo()
+{
+    return new Promise( (resolve, reject) => {
+        chrome.storage.local.get(
+            ["siteName", "siteDomain"],
+            (items) => {
+                resolve({ siteName: items.siteName, siteDomain: items.siteDomain });
+            }
+        );
+    });   
+}
+
+function getStringOfDate(date){
     let day = date.getDate();
     let month = date.getMonth()+1;
     let year = date.getFullYear().toString().slice(2,4);
@@ -24,16 +47,20 @@ function getLinkfromDate(date){
     if (month < 10) {
         month = `0${month}`;
     }
-    return "https://www.kinovod" + day + month + year + ".cc";
+    return day + month + year;
 }
 
-async function checkURL(url, date){
+function getURLFromStringOfDate(stringOfDate){
+    return siteInfo.siteName + stringOfDate + siteInfo.siteDomain;
+}
+
+async function checkURL(url){
     if(! await isSiteOnline(url))
     {
         for (let i = 1; i < 7; i++) {
             let newDate = new Date(date);
             
-            let result = await checkNewURL(url, i, newDate, date );
+            let result = await checkNewURL(url, i, newDate);
             if( result.passed ){
                 url = result.url;
                 break;
@@ -46,16 +73,19 @@ async function checkURL(url, date){
             }
 
             if(i == 6)
-                alert("Kinovod(дата).cc временно недоступен. Используйте VPN и следующую ссылку: kinovod.net")
+                console.log(url)
+                alert("Что-то пошло не так(")
         }
     }
-    return url
+    return url;
 }
 
-async function checkNewURL(url, index, newDate, currentDate){
+async function checkNewURL(url, index, newDate){
     return new Promise( async (resolve, reject) => {
-        newDate.setDate(currentDate.getDate() + index);
-        url = getLinkfromDate(newDate);  
+        newDate.setDate(date.getDate() + index);
+        let stringOfDate = await getStringOfDate(newDate)
+        url = getURLFromStringOfDate(stringOfDate);  
+    
         if(await isSiteOnline(url)){
             console.debug(url + "   " + "PASS")
             resolve({passed : true, url : url});

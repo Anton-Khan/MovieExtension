@@ -1,12 +1,19 @@
 {
     "manifest_version" : 2,
-    "name": "Kinovod",
-    "description": "Open Kinovod Automatically",
-    "version": "1.1.1",
+    "name": "Movie Extension",
+    "description": "Open Site Automatically",
+    "version": "1.1.2",
     "icons": {"128": "icon_128.png"},
     "browser_action": {
         "default_icon": "icon.png",
         "default_popup": "popup.html"
     },
-    "premissons": ["activateTab"]
+    "permissions": [
+        "storage",
+        "activateTab"
+    ],
+    "options_ui": {
+        "page": "options.html",
+        "open_in_tab": false
+    }
 }
