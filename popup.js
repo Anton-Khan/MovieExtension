@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function(){
     setTimeout(() => {
     link();
-  }, "1"); 
+  }, "1");
 }, false);
 
 var date;
@@ -34,7 +34,7 @@ async function getSiteInfo()
                 resolve({ siteName: items.siteName, siteDomain: items.siteDomain });
             }
         );
-    });   
+    });
 }
 
 function getStringOfDate(date){
@@ -44,8 +44,15 @@ function getStringOfDate(date){
     if (day < 10) {
         day = '0' + day;
     }
+    else{
+        day = '' + day;
+    }
+
     if (month < 10) {
         month = `0${month}`;
+    }
+    else{
+        month = '' + month;
     }
     return day + month + year;
 }
@@ -59,7 +66,7 @@ async function checkURL(url){
     {
         for (let i = 1; i < 7; i++) {
             let newDate = new Date(date);
-            
+
             let result = await checkNewURL(url, i, newDate);
             if( result.passed ){
                 url = result.url;
@@ -84,8 +91,8 @@ async function checkNewURL(url, index, newDate){
     return new Promise( async (resolve, reject) => {
         newDate.setDate(date.getDate() + index);
         let stringOfDate = await getStringOfDate(newDate)
-        url = getURLFromStringOfDate(stringOfDate);  
-    
+        url = getURLFromStringOfDate(stringOfDate);
+
         if(await isSiteOnline(url)){
             console.debug(url + "   " + "PASS")
             resolve({passed : true, url : url});
@@ -103,18 +110,18 @@ async function isSiteOnline(url) {
         var timer = setTimeout(function(){
             resolve(false);
         },2000)
-    
+
         var img = document.createElement("img");
         img.onload = function() {
             clearTimeout(timer);
             resolve(true);
         }
-    
+
         img.onerror = function() {
             clearTimeout(timer);
             resolve(false);
         }
-    
+
         img.src = url+"/favicon.ico";
     });
 }
