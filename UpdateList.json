@@ -1,0 +1,10 @@
+{
+  "needToUpdate" : [
+    "https://raw.githubusercontent.com/Anton-Khan/MovieExtension/main/loading.css",
+    "https://raw.githubusercontent.com/Anton-Khan/MovieExtension/main/options.html",
+    "https://raw.githubusercontent.com/Anton-Khan/MovieExtension/main/options.js",
+    "https://raw.githubusercontent.com/Anton-Khan/MovieExtension/main/popup.html",
+    "https://raw.githubusercontent.com/Anton-Khan/MovieExtension/main/popup.js",
+    "https://raw.githubusercontent.com/Anton-Khan/MovieExtension/main/manifest.json"
+  ]
+}
