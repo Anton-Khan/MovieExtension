@@ -8,6 +8,7 @@ var date;
 var siteInfo;
 
 async function link() {
+    alert("This is a test, if you see that message, then updater works fine");
     date = new Date();
     siteInfo = await getSiteInfo();
 

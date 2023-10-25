@@ -4,18 +4,38 @@
     <title>Movie Extension Options</title>
   </head>
   <body>
-  
-    <p>Site will be: https://www.kinovod(current date).cc</p>
-    <label>
+    <label>Example:</label>
+    <table>
+      <style>
+        table, th, td {
+          border:1px solid black;
+          text-align: center;
+          margin-bottom: 30px;
+          margin-top: 5px;
+        }
+      </style>
+      <tr>
+        <th>1st half</th>
+        <th>(current date)</th>
+        <th>2nd half</th>
+      </tr>
+      <tr>
+        <td>https://www.SiteName </td>
+        <td>|dd/mm/yy|</td>
+        <td> .domain</td>
+      </tr>
+    </table>
+   
+    <div>
         <input id="siteName">
-        Site (Example: https://www.kinovod)
-    </label>
+        1st half (Example: https://www.kinovod)
+    </div>
     <p></p>
     
-    <label>
+    <div>
         <input id="siteDomain">
-        Site domain (Example: .cc)
-    </label>
+        2nd half (Example: .cc)
+    </div>
     <p></p>
     
     <div id="status"></div>
