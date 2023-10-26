@@ -15,7 +15,7 @@ async function link() {
     var url = getURLFromStringOfDate(stringOfDate);
 
     url = await checkURL(url);
-    await timeout(100);
+    await timeout(500);
 
     window.open(url, '_blank').focus();
     window.close();
