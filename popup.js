@@ -8,7 +8,6 @@ var date;
 var siteInfo;
 
 async function link() {
-    alert("This is a test, if you see that message, then updater works fine");
     date = new Date();
     siteInfo = await getSiteInfo();
 
@@ -16,7 +15,7 @@ async function link() {
     var url = getURLFromStringOfDate(stringOfDate);
 
     url = await checkURL(url);
-    await timeout(500);
+    await timeout(100);
 
     window.open(url, '_blank').focus();
     window.close();
